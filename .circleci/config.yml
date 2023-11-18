@@ -8,11 +8,11 @@ jobs:
       - checkout # Checkout the repository code
       - run: npm install # Install project dependencies
       - run: npm test # Run unit tests using your testing framework
-      - run: 
+      - run:
           name: Generate Code Coverage Report
           command: |
             npm run test:coverage
-            npm run test:coverage < coverage.txt
+            npm run test:coverage > coverage.txt
             mkdir -p /tmp/artifacts
             cp -r coverage/lcov-report /tmp/artifacts
             cp coverage.txt /tmp/artifacts
