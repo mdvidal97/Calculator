@@ -1,19 +1,20 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: cimg/node:21.2.0 #Set up a Node.js executor
+      - image: cimg/node:21.2.0 # Set up a Node.js executor
     steps:
       - checkout # Checkout the repository code
       - run: npm install # Install project dependencies
       - run: npm test # Run unit tests using your testing framework
-      - run:
+      - run: 
           name: Generate Code Coverage Report
           command: |
             npm run test:coverage
             npm run test:coverage < coverage.txt
             mkdir -p /tmp/artifacts
-            cp /coverage/lcov-report /tmp/artifacts
+            cp -r coverage/lcov-report /tmp/artifacts
             cp coverage.txt /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
