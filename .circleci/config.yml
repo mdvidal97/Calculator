@@ -14,7 +14,6 @@ jobs:
             npm run test:coverage
             npm run test:coverage > coverage.txt
             mkdir -p /tmp/artifacts
-            cp -r coverage/lcov-report /tmp/artifacts
             cp coverage.txt /tmp/artifacts
       - store_artifacts:
           path: /tmp/artifacts
